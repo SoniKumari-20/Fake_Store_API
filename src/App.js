@@ -7,11 +7,12 @@ function App() {
   const [count, setCount] = useState(0);
   function update(){
     setCount(count+1)
-    
+
   }
 
   function decrease(){
     setCount(count-1)
+    
   }
   return (
     <globalInfo.Provider  value={{Count: count , update:update, decrease:decrease}} >
