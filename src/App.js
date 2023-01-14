@@ -7,6 +7,7 @@ function App() {
   const [count, setCount] = useState(0);
   function update(){
     setCount(count+1)
+    
   }
 
   function decrease(){
