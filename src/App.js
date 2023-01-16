@@ -5,36 +5,28 @@ import About from './Component/About';
 import { Cart_item } from './Component/Cart_item';
 import Header from './Component/Header';
 import Home from './Component/Home';
-export const globalInfo = createContext();
+import MainProvider, { MainContext } from './Component/content/MainProvider';
+import { useContext } from 'react';
+
 
 function App() {
-  const [item, setItem] = useState([]);
-  const initialstate = {
-    cartQuantity: 0
-  }
+  const { getAllProducts } = useContext(MainContext)
   useEffect(() => {
-    fetch("https://fakestoreapi.com/products").
-      then((res) => res.json()).then((data) => setItem(data))
+    getAllProducts()
   }, [])
 
 
   return (
-    <globalInfo.Provider value={{ item, initialstate }}  >
+    <>
       <Header />
       <div className="App">
         <Routes>
-
           <Route path='/' element={<Home />}></Route>
-          <Route path='/About/:id' element={<About />}></Route>
-          <Route path='/Cart_item' element={<Cart_item />}></Route>
+          <Route path='About/:id' element={<About />}></Route>
+          <Route path='Cart_item' element={<Cart_item />}></Route>
         </Routes>
-
-
-
-
       </div>
-
-    </globalInfo.Provider>
+    </>
   );
 }
 
