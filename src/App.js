@@ -1,15 +1,17 @@
-import {  useEffect } from 'react';
+import { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import About from './Component/About';
 import { Cart_item } from './Component/Cart_item';
 import Header from './Component/Header';
 import Home from './Component/Home';
-import  { MainContext } from './Component/content/MainProvider';
+import { MainContext } from './Component/content/MainProvider';
 import { useContext } from 'react';
 import { Login } from './Component/Login';
-import { ProtectedRoutes } from './Component/content/ProtectedRoutes';
-
+import { Protected, Public } from './Component/utils';
+import { HttpClient } from './Component/api/HttpClient';
+import Users from './Component/Users';
+HttpClient.setDefaultAxios()
 
 function App() {
   const { getAllProducts } = useContext(MainContext)
@@ -22,15 +24,13 @@ function App() {
     <>
       <Header />
       <div className="App">
-      
-
         <Routes>
-          
-          <Route path='Login' element={ <Login /> } >
+          <Route path='/' element={<Public><Login /></Public>} >
           </Route>
-          <Route path='/home' element={<ProtectedRoutes Component={Home} />}></Route>
-          <Route path='About/:id' element={<ProtectedRoutes Component={About} />}></Route>
-          <Route path='Cart_item' element={<ProtectedRoutes Component={Cart_item} />}></Route>
+          <Route path='/home' element={<Protected> <Home /> </Protected>}></Route>
+          <Route path='About/:id' element={<Protected> <About /> </Protected>}></Route>
+          <Route path='Cart_item' element={<Protected> <Cart_item /> </Protected>}></Route>
+          <Route path='users' element={<Protected> <Users /> </Protected>}></Route>
         </Routes>
       </div>
     </>
