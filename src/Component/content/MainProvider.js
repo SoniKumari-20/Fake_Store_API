@@ -8,8 +8,8 @@ const MainProvider = ({ children }) => {
     const [allProducts, setAllProducts] = useState([])
 
     const getAllProducts = async () => {
-        fetch("https://fakestoreapi.com/products").
-            then((res) => res.json()).then((data) => setAllProducts(data)).catch((err => {
+        fetch("https://fakestoreapi.com/products")
+            .then((res) => res.json()).then((data) => setAllProducts(data)).catch((err => {
                 setAllProducts([])
             }))
     }
@@ -29,14 +29,30 @@ const MainProvider = ({ children }) => {
         setCartItems(cartTempItems)
     }
 
+    const handleRemoveDatafromCart = (id) => {
+        let itemId = Number(id)
+        let temp = [...cartItems]
+        let removeItem = temp.filter((e)=>{
+        if(e.id !== itemId){
+           return e
+        }}
+        )
+       setCartItems(removeItem)
+    }
+
+  
 
 
+
+
+    
 
     return (
         <MainContext.Provider value={{
             getAllProducts,
             allProducts,
             handleAddDataIntoCart,
+            handleRemoveDatafromCart,
             cartItems
         }}>
             {children}

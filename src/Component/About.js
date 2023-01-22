@@ -1,13 +1,12 @@
 import './style.css'
 import React, { useContext, useEffect, useState } from 'react'
-import { AbortedDeferredError, Link, useParams } from 'react-router-dom';
+import {  Link, useParams } from 'react-router-dom';
 import { MainContext } from './content/MainProvider';
 
 
 
 export default function About() {
   const [item1, setItem1] = useState("");
-  const [cartitem, setCartitem] = useState([]);
   const { handleAddDataIntoCart } = useContext(MainContext)
 
 
@@ -29,7 +28,6 @@ export default function About() {
         About the Product
       </h1>
       <div className='margin1'>
-
         <img className="card-img-top card_img" src={item1.image} />
         <div className='card des_card'>
           <div className="card-body text-center " height={"230px"} width={"230px"}>
@@ -37,12 +35,13 @@ export default function About() {
             <h5 className="card-text">{item1.title}</h5>
             <p className="card-text">{item1.description}</p>
             <h3>Rs. {item1.price}/-</h3>
+            <h6>Rating {item1.rating && item1.rating.rate} <i className='fa fa-star'></i> </h6>
           </div>
           <div className='margin1' style={{ width: 750 }}>
-            <button className='btn btn-success add ' onClick={() => handleAddToCart(id)}>Add To Cart
+          <Link to="/" className='btn btn-primary add'>Go To Home
+            </Link>
+            <button className='btn btn-secondary add ' onClick={() => handleAddToCart(id)}>Add To Cart
             </button><br></br>
-            <button className='btn btn-danger add'>Remove To Cart
-            </button>
             <Link to="/Cart_item" className='btn btn-success add'>Go To Cart
             </Link>
           </div>

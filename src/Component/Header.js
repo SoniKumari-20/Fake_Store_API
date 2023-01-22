@@ -1,7 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
+import { MainContext } from './content/MainProvider'
 
 export default function Header() {
+const {cartItems} = useContext(MainContext);
+
+
+
   return (
     <div>
       <nav class="navbar navbar-expand-lg navbar-light bg-primary">
@@ -16,8 +21,13 @@ export default function Header() {
               <Link to="/" class="nav-link" >Home <span class="sr-only">(current)</span></Link>
             </li>
           </ul>
-          <form className="form-inline my-2 my-lg-0">
-            <Link to="/Cart_item"><button><i className="fa-solid fa-cart-shopping"></i>add</button></Link>
+          <form className="form-inline my-5 my-lg-0">
+            <Link to="/Cart_item"><div className='icons'>
+              <div className='plus_product'>
+                <h5>{cartItems.length}</h5>
+              </div>
+              <i className="fa fa-shopping-cart"></i>
+              </div></Link>
           </form>
         </div>
       </nav>
