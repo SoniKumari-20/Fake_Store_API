@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { createContext } from 'react';
+import { getAllProductsData } from '../api';
 
 export const MainContext = createContext({})
 const MainProvider = ({ children }) => {
@@ -8,10 +9,9 @@ const MainProvider = ({ children }) => {
     const [allProducts, setAllProducts] = useState([])
 
     const getAllProducts = async () => {
-        fetch("https://fakestoreapi.com/products")
-            .then((res) => res.json()).then((data) => setAllProducts(data)).catch((err => {
-                setAllProducts([])
-            }))
+        getAllProductsData().then((res) => setAllProducts(res.data)).catch((err => {
+            setAllProducts([])
+        }))
     }
 
     const handleAddDataIntoCart = (id) => {
@@ -31,21 +31,28 @@ const MainProvider = ({ children }) => {
 
     const handleRemoveDatafromCart = (id) => {
         let itemId = Number(id)
-        let temp = [...cartItems]
-        let removeItem = temp.filter((e)=>{
-        if(e.id !== itemId){
-           return e
-        }}
-        )
-       setCartItems(removeItem)
+        let confirmToRemove = window.confirm("are you sure want to remove")
+        if (confirmToRemove) {
+            let temp = [...cartItems]
+            let removeItem = temp.filter((e) => {
+                if (e.id !== itemId) {
+                    return e
+                }
+            }
+            )
+            setCartItems(removeItem)
+        } else {
+            return
+        }
+
     }
 
-  
 
 
 
 
-    
+
+
 
     return (
         <MainContext.Provider value={{
@@ -53,7 +60,8 @@ const MainProvider = ({ children }) => {
             allProducts,
             handleAddDataIntoCart,
             handleRemoveDatafromCart,
-            cartItems
+            cartItems,
+            setCartItems
         }}>
             {children}
 
