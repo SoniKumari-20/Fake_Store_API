@@ -49,11 +49,23 @@ const getProductCategories = (categoryType) => {
     return HttpClient.custom(apiData)
 }
 
+const getAllCategory = () => {
+    const apiData = {
+        url: `/products/categories`,
+        method: "GET",
+    }
+    return HttpClient.custom(apiData)
+}
+
+
+
+
 export {
     getAllProductsData,
     getSingleProduct,
     getAllUsersData,
     getSingleUser,
     getLoginUser,
-    getProductCategories
+    getProductCategories,
+    getAllCategory
 }
