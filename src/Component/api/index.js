@@ -24,8 +24,18 @@ const getAllUsersData = () => {
     return HttpClient.custom(apiData)
 }
 
+const getSingleUser = (userId) => {
+    const apiData = {
+        url: `/users/${userId}`,
+        method: "GET",
+    }
+    return HttpClient.custom(apiData)
+}
+
+
 export {
     getAllProductsData,
     getSingleProduct,
-    getAllUsersData
+    getAllUsersData,
+    getSingleUser
 }

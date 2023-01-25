@@ -14,10 +14,14 @@ import Users from './Component/Users';
 HttpClient.setDefaultAxios()
 
 function App() {
-  const { getAllProducts } = useContext(MainContext)
+  const { getAllProducts, getAllUsers } = useContext(MainContext)
   useEffect(() => {
     getAllProducts()
   }, [])
+
+  useEffect(()=>{
+    getAllUsers()
+},[])
 
 
   return (

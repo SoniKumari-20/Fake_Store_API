@@ -6,6 +6,7 @@ import { MainContext } from './content/MainProvider';
 export default function Home() {
 
   const { allProducts } = useContext(MainContext);
+  
 
   return (
     <div >
