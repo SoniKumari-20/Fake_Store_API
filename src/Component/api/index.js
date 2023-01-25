@@ -31,11 +31,20 @@ const getSingleUser = (userId) => {
     }
     return HttpClient.custom(apiData)
 }
+const getLoginUser = (userData) => {
+    const apiData = {
+        url: `/auth/login`,
+        method: "POST",
+        data:  JSON.stringify(userData) 
+    }
+    return HttpClient.custom(apiData)
+}
 
 
 export {
     getAllProductsData,
     getSingleProduct,
     getAllUsersData,
-    getSingleUser
+    getSingleUser,
+    getLoginUser
 }
