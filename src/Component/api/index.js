@@ -40,11 +40,20 @@ const getLoginUser = (userData) => {
     return HttpClient.custom(apiData)
 }
 
+const getProductCategories = () => {
+    
+    const apiData = {
+        url: `/products/category/jewelery`,
+        method: "GET",
+    }
+    return HttpClient.custom(apiData)
+}
 
 export {
     getAllProductsData,
     getSingleProduct,
     getAllUsersData,
     getSingleUser,
-    getLoginUser
+    getLoginUser,
+    getProductCategories
 }
