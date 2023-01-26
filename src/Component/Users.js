@@ -11,6 +11,8 @@ console.log(allUserData)
         <div>
 
             <table class="table table-striped">
+               
+                    <thead>
                 <tr><th>Id</th>
                     <th>Name</th>
                     <th>Email</th>
@@ -18,9 +20,11 @@ console.log(allUserData)
                     <th>Username</th>
                     <th>View</th>
                 </tr>
+                </thead>
                 {
                     allUserData.map((e,id) =>
-                        <tr style={{ alignItems: "bottom" }}>
+                    <tbody>
+                        <tr style={{ alignItems: "bottom" }} key={id}>
                             <td>{id + 1}</td>
                             <td>{e.name.firstname + " "+  e.name.lastname}</td>
                             <td>{e.email}</td>
@@ -28,8 +32,10 @@ console.log(allUserData)
                             <td>{e.username}</td>
                             <td><Link to={"/singleuser/" + e.id}><button className='btn btn-success'>View</button></Link></td>
                         </tr>
+                        </tbody>
                     )
                 }
+                
             </table>
         </div>
     );
