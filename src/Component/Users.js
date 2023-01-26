@@ -1,9 +1,10 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
 import { MainContext } from './content/MainProvider';
 
 const Users = () => {
     const { allUserData } = useContext(MainContext)
-
+console.log(allUserData)
 
     
     return (
@@ -25,9 +26,8 @@ const Users = () => {
                             <td>{e.email}</td>
                             <td >{e.phone}</td>
                             <td>{e.username}</td>
-                            <td><button className='btn btn-success' >View</button></td>
+                            <td><Link to={"/singleuser/" + e.id}><button className='btn btn-success'>View</button></Link></td>
                         </tr>
-
                     )
                 }
             </table>

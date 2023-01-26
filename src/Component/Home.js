@@ -5,14 +5,30 @@ import { MainContext } from './content/MainProvider';
 
 export default function Home() {
 
-  const { allProducts } = useContext(MainContext);
-  
+  const { allProducts } = useContext(MainContext)
+
 
   return (
     <div >
-      <h1>
-        Home Page
-      </h1>
+      <div>
+        <h1>
+          Home Page
+        </h1>
+       
+<div class="btn-group">
+  <button type="button" class="btn btn-danger">Action</button>
+  <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+    <span class="visually-hidden">Toggle Dropdown</span>
+  </button>
+  <ul class="dropdown-menu">
+    <li><h4 className='dropdowm-item'></h4></li>
+    <li><a class="dropdown-item" >Another action</a></li>
+    <li><a class="dropdown-item" >Something else here</a></li>
+    <li><hr class="dropdown-divider" /></li>
+    <li><a class="dropdown-item" >Separated link</a></li>
+  </ul>
+</div>
+      </div>
       <div className='margin'>
         <div class="container-fluid  text-center">
           <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 ">

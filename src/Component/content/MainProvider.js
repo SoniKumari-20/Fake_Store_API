@@ -1,14 +1,14 @@
 import React from 'react';
 import { useState } from 'react';
 import { createContext } from 'react';
-import { getAllProductsData, getAllUsersData } from '../api';
+import { getAllProductsData, getAllUsersData,getAllCategory } from '../api';
 
 export const MainContext = createContext({})
 const MainProvider = ({ children }) => {
     const [cartItems, setCartItems] = useState([])
     const [allProducts, setAllProducts] = useState([])
     const [allUserData, setAllUserData] = useState([])
-
+    const [category, setCategory] = useState([])
     const getAllProducts = async () => {
         getAllProductsData().then((res) => setAllProducts(res.data)).catch((err => {
             setAllProducts([])
@@ -22,7 +22,11 @@ const MainProvider = ({ children }) => {
         }))
     }
 
-
+const getcategory = async () => {
+    getAllCategory().then((res)=> setCategory(res.data)).catch((err=>{
+        setCategory([])
+    }))
+}
 
     const handleAddDataIntoCart = (id) => {
         let itemId = Number(id)
@@ -73,7 +77,9 @@ const MainProvider = ({ children }) => {
             cartItems,
             setCartItems,
             allUserData,
-            getAllUsers
+            getAllUsers,
+            getcategory,
+            category
         }}>
             {children}
 

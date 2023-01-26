@@ -11,6 +11,8 @@ import { Login } from './Component/Login';
 import { Protected, Public } from './Component/utils';
 import { HttpClient } from './Component/api/HttpClient';
 import Users from './Component/Users';
+import { getAllCategory } from './Component/api';
+import SingleUser from './Component/SingleUser';
 HttpClient.setDefaultAxios()
 
 function App() {
@@ -22,6 +24,11 @@ function App() {
   useEffect(()=>{
     getAllUsers()
 },[])
+
+useEffect(()=> {
+     getAllCategory()
+},[])
+
 
 
   return (
@@ -35,6 +42,7 @@ function App() {
           <Route path='About/:id' element={<Protected> <About /> </Protected>}></Route>
           <Route path='Cart_item' element={<Protected> <Cart_item /> </Protected>}></Route>
           <Route path='users' element={<Protected> <Users /> </Protected>}></Route>
+          <Route path='singleuser/:id' element={<Protected> <SingleUser /> </Protected>}></Route>
         </Routes>
       </div>
     </>
