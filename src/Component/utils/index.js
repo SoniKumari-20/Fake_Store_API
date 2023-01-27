@@ -1,22 +1,18 @@
-import { getValue } from "@testing-library/user-event/dist/utils";
 import {Navigate } from "react-router-dom";
 
 
 export const Protected = ({ children }) => {
-    
-
-
-    const isLogin = localStorage.getItem("Token", getValue);
+    const isLogin = localStorage.getItem("Token");
     if (!isLogin) return <Navigate to={"/"} />
     return <>{children}</>;
 }
 
 export const Public = ({ children }) => {
-    const isLogin = localStorage.getItem("Token", getValue)
+    const isLogin = localStorage.getItem("Token")
     console.log(children, "children", !isLogin);
     // console.log(isLogin, "islogin")
     if (!isLogin) return <>{children}</>;
-    return <Navigate to={"home"} />
+    return <Navigate to={"/home"} />
 }
 
 // export const getCookie = (cname) => {
@@ -55,7 +51,7 @@ export const Public = ({ children }) => {
 //   },
 
 
-export const getToken = (TokenName, getValue) => {
-    return localStorage.getItem(TokenName, getValue)
+export const getToken = (TokenName) => {
+    return localStorage.getItem(TokenName)
 
 }
