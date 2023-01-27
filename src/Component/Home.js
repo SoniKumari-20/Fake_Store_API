@@ -6,7 +6,8 @@ import { MainContext } from './content/MainProvider';
 export default function Home() {
 
   const { allProducts } = useContext(MainContext)
-
+  
+  
 
   return (
     <div >
@@ -20,9 +21,9 @@ export default function Home() {
               All Category
             </button>
             <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
+              <li class="dropdown-item"> Action</li>
+              <li class="dropdown-item" >Another action</li>
+              <li class="dropdown-item" >Something else here</li>
             </ul>
           </div>
         </div>

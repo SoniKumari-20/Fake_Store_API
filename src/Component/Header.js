@@ -5,8 +5,6 @@ import { MainContext } from './content/MainProvider'
 export default function Header() {
   const { cartItems } = useContext(MainContext);
 
-
-
   return (
     // <div>
     <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-primary">

@@ -1,15 +1,18 @@
-import { Navigate } from "react-router-dom";
+import { getValue } from "@testing-library/user-event/dist/utils";
+import {Navigate } from "react-router-dom";
 
 
 export const Protected = ({ children }) => {
-    const isLogin = localStorage.getItem("Token");
+    
+
+
+    const isLogin = localStorage.getItem("Token", getValue);
     if (!isLogin) return <Navigate to={"/"} />
     return <>{children}</>;
 }
 
 export const Public = ({ children }) => {
-
-    const isLogin = localStorage.getItem("Token")
+    const isLogin = localStorage.getItem("Token", getValue)
     console.log(children, "children", !isLogin);
     // console.log(isLogin, "islogin")
     if (!isLogin) return <>{children}</>;
@@ -52,7 +55,7 @@ export const Public = ({ children }) => {
 //   },
 
 
-export const getToken = (TokenName) => {
-    return localStorage.getItem(TokenName)
+export const getToken = (TokenName, getValue) => {
+    return localStorage.getItem(TokenName, getValue)
 
 }

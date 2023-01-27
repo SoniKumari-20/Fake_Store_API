@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { createContext } from 'react';
-import { getAllProductsData, getAllUsersData,getAllCategory } from '../api';
+import { getAllProductsData, getAllUsersData, getAllCategory} from '../api';
 
 export const MainContext = createContext({})
 const MainProvider = ({ children }) => {
@@ -9,6 +9,9 @@ const MainProvider = ({ children }) => {
     const [allProducts, setAllProducts] = useState([])
     const [allUserData, setAllUserData] = useState([])
     const [category, setCategory] = useState([])
+
+    
+    
     const getAllProducts = async () => {
         getAllProductsData().then((res) => setAllProducts(res.data)).catch((err => {
             setAllProducts([])
@@ -16,17 +19,19 @@ const MainProvider = ({ children }) => {
     }
 
 
+    const getAllCategories = async () => {
+        getAllCategory().then((res) => setCategory(res.data)).catch((err => {
+            setCategory([])
+        }))
+    }
+
+
+
     const getAllUsers = async () => {
         getAllUsersData().then((res) => setAllUserData(res.data)).catch((err => {
             setAllUserData([])
         }))
     }
-
-const getcategory = async () => {
-    getAllCategory().then((res)=> setCategory(res.data)).catch((err=>{
-        setCategory([])
-    }))
-}
 
     const handleAddDataIntoCart = (id) => {
         let itemId = Number(id)
@@ -78,8 +83,9 @@ const getcategory = async () => {
             setCartItems,
             allUserData,
             getAllUsers,
-            getcategory,
-            category
+            getAllCategories,
+            category,
+           
         }}>
             {children}
 

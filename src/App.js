@@ -11,22 +11,22 @@ import { Login } from './Component/Login';
 import { Protected, Public } from './Component/utils';
 import { HttpClient } from './Component/api/HttpClient';
 import Users from './Component/Users';
-import { getAllCategory } from './Component/api';
 import SingleUser from './Component/SingleUser';
 HttpClient.setDefaultAxios()
 
 function App() {
-  const { getAllProducts, getAllUsers } = useContext(MainContext)
+  const { getAllProducts, getAllUsers, getAllCategories } = useContext(MainContext)
   useEffect(() => {
     getAllProducts()
   }, [])
 
+  
   useEffect(()=>{
     getAllUsers()
 },[])
 
 useEffect(()=> {
-     getAllCategory()
+  getAllCategories()
 },[])
 
 

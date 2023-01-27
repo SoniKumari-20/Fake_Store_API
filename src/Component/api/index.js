@@ -31,17 +31,19 @@ const getSingleUser = (userId) => {
     }
     return HttpClient.custom(apiData)
 }
-const getLoginUser = (userData) => {
+const getLoginUser = (username, password) => {
     const apiData = {
         url: `/auth/login`,
         method: "POST",
-        data:  JSON.stringify(userData) 
+        data:  JSON.stringify( {
+               username : username,
+               password : password
+        }) 
     }
     return HttpClient.custom(apiData)
 }
 
 const getProductCategories = (categoryType) => {
-    
     const apiData = {
         url: `/products/category/${categoryType}`,
         method: "GET",
