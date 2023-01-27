@@ -18,17 +18,9 @@ function App() {
   const { getAllProducts, getAllUsers, getAllCategories } = useContext(MainContext)
   useEffect(() => {
     getAllProducts()
-  }, [])
-
-  
-  useEffect(()=>{
+    getAllCategories()
     getAllUsers()
-},[])
-
-useEffect(()=> {
-  getAllCategories()
-},[])
-
+  }, [])
 
 
   return (
