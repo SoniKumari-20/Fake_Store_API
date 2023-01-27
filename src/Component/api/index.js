@@ -31,14 +31,11 @@ const getSingleUser = (userId) => {
     }
     return HttpClient.custom(apiData)
 }
-const getLoginUser = (username, password) => {
+const getLoginUser = (userData) => {
     const apiData = {
         url: `/auth/login`,
         method: "POST",
-        data:  JSON.stringify( {
-               username : username,
-               password : password
-        }) 
+        data: userData
     }
     return HttpClient.custom(apiData)
 }
