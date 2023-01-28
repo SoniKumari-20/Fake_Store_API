@@ -6,13 +6,12 @@ import { Link } from 'react-router-dom'
 
 export const Cart_item = () => {
   const { cartItems, allProducts, handleRemoveDatafromCart, setCartItems } = useContext(MainContext)
-
+const totalPrice = 0
 
   let allCartItemsId = cartItems.map(e => e.id)
   let allCartProducts = allProducts.filter(e => allCartItemsId.includes(e.id))
 
   const setQuantity = (id, data) => {
-
     let tempCartItem = [...cartItems];
     tempCartItem.forEach(e => {
       if (e.id === id) {
@@ -20,15 +19,18 @@ export const Cart_item = () => {
       }
     })
     setCartItems(tempCartItem)
+    console.log(tempCartItem)
   }
   console.log(allCartProducts.length, "len")
 
+  
+  
 
 
   return (
     <div>
       <h1> <Link to={"/home"} ><i class="fa-solid fa-house"></i></Link>  CART ITEMS <i class="fa-sharp fa-solid fa-cart-shopping text-primary"></i></h1>
-
+     
       <table class="table table-striped">
         <tr><th>Id</th>
           <th>Products</th>
@@ -57,6 +59,16 @@ export const Cart_item = () => {
         }
       </table>
       <hr></hr>
+    {
+      allCartProducts.map((e) =>
+      <>
+      { 
+      e.price * cartItems.find(element => element.id === e.id).count
+      }
+      </>
+      )
+    }
+
       {allCartProducts.length === 0 &&
         <span className='h1'>
           NO CART ITEMS
