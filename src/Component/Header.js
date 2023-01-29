@@ -8,8 +8,8 @@ export default function Header() {
   const Navigate = useNavigate()
 
   function logout() {
-    localStorage.clear()
-    Navigate('/')
+    localStorage.removeItem("Token")
+    window.location.href = "/"
 
   }
 
