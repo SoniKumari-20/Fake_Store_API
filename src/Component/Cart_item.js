@@ -7,7 +7,7 @@ import { useEffect } from 'react'
 
 export const Cart_item = () => {
   const { cartItems, allProducts, handleRemoveDatafromCart, setCartItems } = useContext(MainContext)
-  const totalPrice = 0
+
   const [totalAmount, setTotalAmount] = useState(0)
 
   let allCartItemsId = cartItems.map(e => e.id)
@@ -21,7 +21,7 @@ export const Cart_item = () => {
       }
     })
     setCartItems(tempCartItem)
-    console.log(tempCartItem)
+    // console.log(tempCartItem)
   }
   useEffect(() => {
     totalCartAmount()
@@ -68,7 +68,7 @@ export const Cart_item = () => {
                   <button className=' btn btn-primary ' style={{ margin: 15 }} onClick={() => setQuantity(e.id, +1)} ><i className='fa fa-plus '></i></button>
                   <button className='btn btn-danger ' style={{ margin: 3 }} onClick={() => setQuantity(e.id, -1)} ><i className='fa fa-minus '></i></button>
                 </td>
-                <td>{e.price * cartItems.find(element => element.id === e.id).count}</td>
+                <td>{(e.price * cartItems.find(element => element.id === e.id).count).toFixed(2)}</td>
                 <td><button className='btn btn-danger' onClick={() => handleRemoveDatafromCart(e.id)}>Remove </button></td>
               </tr>
             )
@@ -81,11 +81,11 @@ export const Cart_item = () => {
               {allCartProducts.map(ele => {
                 let { count } = cartItems.find(e => e.id === ele.id)
                 return <>
-                  <span>{`${count} * ${ele.price} =  ${count * ele.price}`}   </span> <br />
+                  <span>{`${count} * ${ele.price} =  ${(count * ele.price).toFixed(2)}`}   </span> <br />
                 </>
               })}
 
-              <h2>${totalAmount}</h2>
+              <h2>${totalAmount.toFixed(2)}</h2>
 
             </div>
           </div>

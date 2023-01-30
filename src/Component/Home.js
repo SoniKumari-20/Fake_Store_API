@@ -1,12 +1,34 @@
 import './style.css'
-import React, { useContext } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import { useContext, useEffect, useState } from 'react';
 import { MainContext } from './content/MainProvider';
+import { getProductCategories } from './api';
+import { calculateNewValue } from '@testing-library/user-event/dist/utils';
 
 export default function Home() {
 
-  const { allProducts } = useContext(MainContext)
-  
+  const {category, allProducts, setAllProducts} = useContext(MainContext)
+
+const [filter, setFilter] = useState(allProducts)
+const [data, setData] = useState("")
+
+console.log(data)
+
+const getCategoryData = async () => {
+  getProductCategories(data).then((res) =>
+  setFilter(res.data)).catch((err => console.log("error")))
+}
+
+
+useEffect(() => {
+  getCategoryData()
+}, [])
+
+const  filterData = (cat) => {
+  setData(cat)
+}
+
+
   
 
   return (
@@ -21,9 +43,12 @@ export default function Home() {
               All Category
             </button>
             <ul class="dropdown-menu">
-              <li class="dropdown-item"> Action</li>
-              <li class="dropdown-item" >Another action</li>
-              <li class="dropdown-item" >Something else here</li>
+
+            <li class="btn btn-light  "  style={{height: 40, width: 250,  margin:2}} onClick={ () => setFilter(allProducts)} >ALL</li>
+              <li class="btn btn-light  "  style={{height: 40, width: 250,  margin:2}} onClick={ () => filterData("electronics")} >{category[0]} </li>
+              <li class="btn btn-light"  style={{height: 40,width: 250,  margin:2}} onClick={() =>filterData("jewelery")}>{category[1]}</li>
+              <li class="btn btn-light"  style={{height: 40,width: 250, margin:2}} onClick={() =>filterData("men's clothing")} >{category[2]}</li>
+              <li class="btn btn-light"  style={{height: 40,width: 250 , margin:2}} onClick={() =>filterData("women's clothing")}>{category[3]}</li>
             </ul>
           </div>
         </div>
@@ -33,7 +58,7 @@ export default function Home() {
         <div class="container-fluid  text-center">
           <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 ">
             {
-              allProducts.map((items, id) =>
+              filter.map((items, id) =>
                 <div class="col-sm my-4">
                   <div className="card  cart_item" key={id} >
                     <img className="card-img-top" src={items.image} alt="Card image cap" height={"200px"} />

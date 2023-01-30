@@ -4,7 +4,7 @@ import { MainContext } from './content/MainProvider';
 
 const Users = () => {
     const { allUserData } = useContext(MainContext)
-console.log(allUserData)
+// console.log(allUserData)
 
     
     return (

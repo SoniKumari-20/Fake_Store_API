@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { createContext } from 'react';
 import { getAllProductsData, getAllUsersData, getAllCategory} from '../api';
@@ -9,6 +9,8 @@ const MainProvider = ({ children }) => {
     const [allProducts, setAllProducts] = useState([])
     const [allUserData, setAllUserData] = useState([])
     const [category, setCategory] = useState([])
+    
+    // console.log(allProducts)
 
     
     
@@ -18,12 +20,18 @@ const MainProvider = ({ children }) => {
         }))
     }
 
+    
+
 
     const getAllCategories = async () => {
         getAllCategory().then((res) => setCategory(res.data)).catch((err => {
             setCategory([])
         }))
     }
+
+    useEffect(() => {
+               getAllCategories()
+    }, [])
 
 
 
@@ -85,6 +93,7 @@ const MainProvider = ({ children }) => {
             getAllUsers,
             getAllCategories,
             category,
+            
            
         }}>
             {children}

@@ -3,14 +3,14 @@ import { Navigate } from "react-router-dom";
 
 export const Protected = ({ children }) => {
     const isLogin = localStorage.getItem("Token");
-    console.log(isLogin)
+    // console.log(isLogin)
     if (!isLogin) return <Navigate to={"/"} />
     return <>{children}</>;
 }
 
 export const Public = ({ children }) => {
     const isLogin = localStorage.getItem("Token")
-    console.log(children, "children", !isLogin);
+    // console.log(children, "children", !isLogin);
     // console.log(isLogin, "islogin")
     if (!isLogin) return <>{children}</>;
     return <Navigate to={"/home"} />
