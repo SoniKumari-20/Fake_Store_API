@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { getLoginUser } from './api';
 import { useNavigate } from 'react-router-dom';
+import swal from 'sweetalert';
 
 
 export const Login = () => {
@@ -17,10 +18,14 @@ export const Login = () => {
       if (res.data.token) {
         localStorage.setItem("Token", res.data.token)
         navigate("/home")
+
       }
     }
-    ).catch((err => {
-      console.log([])
+    ).catch(swal({
+      title: "Invalid Credentials!",
+      text: "Please check Your  username & Password!",
+      icon: "error",
+      button: "Oops!",
     }))
   }
 
@@ -29,14 +34,14 @@ export const Login = () => {
     console.log(event)
     setUserData(state => ({
       ...state,
-      [name]: value
+      [name]: value,
+  
     }))
   }
 
+  
 
-
-
-
+  
   return (
     <>
       <div className="background div">
@@ -48,12 +53,13 @@ export const Login = () => {
         <label forhtml="password">Password</label>
         <input type="password" placeholder="Password" name='password' id="password" value={userData.password}
           onChange={handleCollectData} />
-        <button type='submit' onClick={getLogin}>Log In</button>
+        <button type='submit' onClick={getLogin} >Log In</button>
         {/* <div className="social div">
           <div className="go div"><i className="fab fa-google"></i> <a href='/www.google.com'>google</a></div>
           <div className="fb div"><i className="fab fa-facebook"></i>  Facebook</div>
         </div> */}
       </div>
+      {/* <div><button onClick={() =>all()}>add</button></div> */}
     </>
   )
 }

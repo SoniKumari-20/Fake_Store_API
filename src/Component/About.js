@@ -30,9 +30,9 @@ export default function About() {
       </h1>
 
       {itemLoading ? <>
-        <div class="d-flex justify-content-center">
-          <div class="spinner-border" role="status">
-            <span class="visually-hidden" style={{ fontSize: "40px" }} >Loading...</span>
+        <div className="d-flex justify-content-center">
+          <div className="spinner-border" role="status">
+            <span className="visually-hidden" style={{ fontSize: "40px" }} >Loading...</span>
           </div>
         </div>
       </> : <div className='margin1'>
@@ -46,11 +46,11 @@ export default function About() {
             <h6>Rating {item1.rating && item1.rating.rate} <i className='fa fa-star'></i> </h6>
           </div>
           <div className='margin1' style={{ width: 750 }}>
-            <Link to="/home" className='btn btn-primary add'>Go To Home <i class="fa-solid fa-house"></i>
+            <Link to="/home" className='btn btn-primary add'>Go To Home <i className="fa-solid fa-house"></i>
             </Link>
-            <button className='btn btn-secondary add' onClick={() => handleAddToCart(id)}>Add To Cart <i class="fa-solid fa-cart-plus"></i>
+            <button className='btn btn-secondary add' onClick={() => handleAddToCart(id)}>Add To Cart <i className="fa-solid fa-cart-plus"></i>
             </button>
-            <Link to="/Cart_item" className='btn btn-success add'>Go To Cart  <i class="fa-solid fa-cart-shopping"></i>
+            <Link to="/Cart_item" className='btn btn-success add'>Go To Cart  <i className="fa-solid fa-cart-shopping"></i>
             </Link>
           </div>
 
