@@ -18,15 +18,23 @@ export const Login = () => {
       if (res.data.token) {
         localStorage.setItem("Token", res.data.token)
         navigate("/home")
+        swal({
+          title: "login successfully",
+          text: "You Logged In SuccessFully!",
+          icon: "success",
+          button: "Done!",
+        })
 
       }
     }
-    ).catch(swal({
-      title: "Invalid Credentials!",
-      text: "Please check Your  username & Password!",
-      icon: "error",
-      button: "Oops!",
-    }))
+    ).catch(() => {
+      swal({
+        title: "Invalid Credentials!",
+        text: "Please check Your  username & Password!",
+        icon: "error",
+        button: "Oops!",
+      })
+    })
   }
 
   const handleCollectData = (event) => {
@@ -35,13 +43,13 @@ export const Login = () => {
     setUserData(state => ({
       ...state,
       [name]: value,
-  
+
     }))
   }
 
-  
 
-  
+
+
   return (
     <>
       <div className="background div">

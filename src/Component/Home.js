@@ -6,27 +6,45 @@ import { getProductCategories } from './api';
 
 export default function Home() {
 
-  const {category, allProducts} = useContext(MainContext)
-  
-const [filter, setFilter] = useState(allProducts)
+  const { category, allProducts } = useContext(MainContext)
 
-const [data, setData] = useState({})
+  const [filter, setFilter] = useState(allProducts)
 
-// console.log(data)
+  const [categoryItem, setCategoryItem] = useState("All")
+  const [productsLoading, setProductLoading] = useState(false)
 
-const getCategoryData = async () => {
-  getProductCategories(data).then((res) =>
-  setFilter(res.data)).catch((err => console.log("error")))
-}
+  const handleFetchProductsCategory = (item) => {
+    if (item === "All") {
+      setFilter(allProducts)
+    } else {
+      setProductLoading(true)
+      getProductCategories(item).then((res) => {
+        setFilter(res.data); setProductLoading(false)
+      }).catch((err => console.log("error")))
+    }
+    setCategoryItem(item)
+  }
 
 
-useEffect(() => {
-  getCategoryData()
-}, [data])
+
+  useEffect(() => {
+    console.log(filter, "filter")
+  }, [filter])
+
+  // console.log(data)
+
+  // const getCategoryData = async () => {
+
+  // }
+
+
+  // useEffect(() => {
+  //   getCategoryData()
+  // }, [data])
 
 
 
-  
+
 
   return (
     <div >
@@ -37,26 +55,28 @@ useEffect(() => {
         <div className="container" style={{ width: "300px" }}>
           <div className="dropdown"  >
             <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-              All Category
+              {categoryItem}
             </button>
-            <ul className="dropdown-menu"> 
-            <li className="btn btn-light  "  style={{height: 40, width: 250,  margin:2}} onClick={ () => setFilter(allProducts)} >ALL</li>
-              <li className="btn btn-light  "  style={{height: 40, width: 250,  margin:2}} onClick={ () => setData("electronics")} >{category[0]} </li>
-              <li className="btn btn-light"  style={{height: 40,width: 250,  margin:2}} onClick={() =>setData("jewelery")}>{category[1]}</li>
-              <li className="btn btn-light"  style={{height: 40,width: 250, margin:2}} onClick={() =>setData("men's clothing")} >{category[2]}</li>
-              <li className="btn btn-light"  style={{height: 40,width: 250 , margin:2}} onClick={() =>setData("women's clothing")}>{category[3]}</li>
+            <ul className="dropdown-menu">
+              <li className="btn btn-light  " style={{ height: 40, width: 250, margin: 2 }} onClick={() => handleFetchProductsCategory("All")} >ALL</li>
+              {category.map((item) => (
+                <li className="btn btn-light  " style={{ height: 40, width: 250, margin: 2 }} onClick={() => handleFetchProductsCategory(item)} >{item}</li>
+              ))}
             </ul>
           </div>
         </div>
       </div>
 
-      <div className='margin'>
+      {productsLoading ? <>
+
+        <h1 style={{ marginTop: "100px" }} >Loading .......</h1>
+      </> : <div className='margin'>
         <div className="container-fluid  text-center">
           <div className="row row-cols-1 row-cols-sm-2 row-cols-md-4 ">
             {
               filter.map((items, id) =>
                 <div className="col-sm my-4" key={id}>
-                  <div className="card  cart_item" key={id+1} >
+                  <div className="card  cart_item" key={id + 1} >
                     <img className="card-img-top" src={items.image} alt="Card image cap" height={"200px"} />
                     <div className="card-body text-center " height={"230px"} width={"230px"}>
                       <h5 className="card-title">{items.category}</h5>
@@ -74,7 +94,7 @@ useEffect(() => {
           </div>
         </div>
 
-      </div>
+      </div>}
     </div>
   )
 }

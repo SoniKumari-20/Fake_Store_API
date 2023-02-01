@@ -15,12 +15,13 @@ import SingleUser from './Component/SingleUser';
 HttpClient.setDefaultAxios()
 
 function App() {
-  const { getAllProducts, getAllUsers, getAllCategories } = useContext(MainContext)
+  const { getAllProducts, getAllUsers, getAllCategories, isAuth, setIsAuth } = useContext(MainContext)
   useEffect(() => {
     getAllProducts()
     getAllCategories()
     getAllUsers()
   }, [])
+
 
 
   return (
