@@ -26,7 +26,11 @@ export default function SingleUser() {
                 </div>
             </> : <div className='margin1 d-flex justify-content-center'>
                 <div className="card " style={{ width: 500, marginTop: 50 }}>
+                    
                     <div className="card-body" style={{ textAlign: "left" }}>
+                    <div className='d-flex justify-content-center' >
+                        <img style={{height:"190px", width:"190px", borderRadius:"50%"}} src='https://tse2.mm.bing.net/th?id=OIP.PZsMLTIgXaEsdCA0VjTo7gHaLH&pid=Api&P=0' alt='...'></img>
+                    </div>
                         <h3> Name :  {singleUserData?.name?.firstname + " " + singleUserData?.name?.lastname}</h3>
                         <hr ></hr>
                         <h5 className="card-title"> E-mail Address :  {singleUserData?.email}</h5>
