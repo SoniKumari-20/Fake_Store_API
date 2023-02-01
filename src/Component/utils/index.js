@@ -1,10 +1,14 @@
+import { useContext } from "react";
 import { Navigate } from "react-router-dom";
+import { MainContext } from "../content/MainProvider";
 
 
 export const Protected = ({ children }) => {
+    const { setIsAuth } = useContext(MainContext)
     const isLogin = localStorage.getItem("Token");
     // console.log(isLogin)
     if (!isLogin) return <Navigate to={"/"} />
+    setIsAuth(true)
     return <>{children}</>;
 }
 

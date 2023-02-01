@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { createContext } from 'react';
-import { getAllProductsData, getAllUsersData, getAllCategory} from '../api';
+import { getAllProductsData, getAllUsersData, getAllCategory } from '../api';
 
 export const MainContext = createContext({})
 const MainProvider = ({ children }) => {
@@ -9,18 +9,19 @@ const MainProvider = ({ children }) => {
     const [allProducts, setAllProducts] = useState([])
     const [allUserData, setAllUserData] = useState([])
     const [category, setCategory] = useState([])
-    
+    const [isAuth, setIsAuth] = useState(false)
+
     // console.log(allProducts)
 
-    
-    
+
+
     const getAllProducts = async () => {
         getAllProductsData().then((res) => setAllProducts(res.data)).catch((err => {
             setAllProducts([])
         }))
     }
 
-    
+
 
 
     const getAllCategories = async () => {
@@ -30,7 +31,7 @@ const MainProvider = ({ children }) => {
     }
 
     useEffect(() => {
-               getAllCategories()
+        getAllCategories()
     }, [])
 
 
@@ -93,8 +94,10 @@ const MainProvider = ({ children }) => {
             getAllUsers,
             getAllCategories,
             category,
-            
-           
+            isAuth,
+            setIsAuth
+
+
         }}>
             {children}
 

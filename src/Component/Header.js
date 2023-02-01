@@ -1,11 +1,15 @@
-import React, { useContext } from 'react'
-import { Link} from 'react-router-dom'
+import React, { useContext, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { MainContext } from './content/MainProvider'
 import './style.css'
+import { useEffect } from 'react';
 
 export default function Header() {
-  const { cartItems } = useContext(MainContext);
- 
+  const { cartItems, isAuth } = useContext(MainContext);
+
+
+
+
 
   function logout() {
     localStorage.removeItem("Token")
@@ -24,7 +28,7 @@ export default function Header() {
         <span className="navbar-toggler-icon"></span>
       </button>
       {
-        localStorage.getItem("Token") ?
+        isAuth ?
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item active">
@@ -44,7 +48,7 @@ export default function Header() {
           </div>
           :
           <div></div>
-}
+      }
 
     </nav>
     // </div>
