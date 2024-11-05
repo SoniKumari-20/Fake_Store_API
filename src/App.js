@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import About from './Component/About';
-import { Cart_item } from './Component/Cart_item';
+import { CartItem } from './Component/Cart_item';
 import Header from './Component/Header';
 import Home from './Component/Home';
 import { MainContext } from './Component/content/MainProvider';
@@ -15,12 +15,12 @@ import SingleUser from './Component/SingleUser';
 HttpClient.setDefaultAxios()
 
 function App() {
-  const { getAllProducts, getAllUsers, getAllCategories, isAuth, setIsAuth } = useContext(MainContext)
+  const { getAllProducts, getAllUsers, getAllCategories } = useContext(MainContext)
   useEffect(() => {
     getAllProducts()
     getAllCategories()
     getAllUsers()
-  }, [])
+  }, [1])
 
 
 
@@ -33,7 +33,7 @@ function App() {
           </Route>
           <Route path='/home' element={<Protected> <Home /> </Protected>}></Route>
           <Route path='About/:id' element={<Protected> <About /> </Protected>}></Route>
-          <Route path='Cart_item' element={<Protected> <Cart_item /> </Protected>}></Route>
+          <Route path='Cart_item' element={<Protected> <CartItem /> </Protected>}></Route>
           <Route path='users' element={<Protected> <Users /> </Protected>}></Route>
           <Route path='singleuser/:id' element={<Protected> <SingleUser /> </Protected>}></Route>
         </Routes>

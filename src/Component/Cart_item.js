@@ -5,7 +5,7 @@ import { MainContext } from './content/MainProvider'
 import { Link } from 'react-router-dom'
 import { useEffect } from 'react'
 
-export const Cart_item = () => {
+export const CartItem = () => {
   const { cartItems, allProducts, handleRemoveDatafromCart, setCartItems } = useContext(MainContext)
 
   const [totalAmount, setTotalAmount] = useState(0)
@@ -46,6 +46,13 @@ export const Cart_item = () => {
   return (
     <div>
       <h1> <Link to={"/home"} ><i class="fa-solid fa-house"></i></Link>  CART ITEMS <i class="fa-sharp fa-solid fa-cart-shopping text-primary"></i></h1>
+      {allCartProducts.length === 0 ?<>
+      <div className='d-flex align-center justify-content-center'>
+      <span className='h1 '>
+          NO CART ITEMS
+        </span>
+      </div>
+        </> : <>
       <div style={{ display: "flex" }} >
         <div style={{ width: "80%" }} >      <table class="table table-striped">
           <tr><th>Id</th>
@@ -95,21 +102,8 @@ export const Cart_item = () => {
       </div>
 
       <hr></hr>
-      {/* {
-        allCartProducts.map((e) =>
-          <>
-            {
-              e.price * cartItems.find(element => element.id === e.id).count
+      </>
             }
-          </>
-        )
-      } */}
-
-      {allCartProducts.length === 0 &&
-        <span className='h1'>
-          NO CART ITEMS
-        </span>}
-
     </div>
   )
 }
