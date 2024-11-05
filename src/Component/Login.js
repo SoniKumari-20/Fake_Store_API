@@ -51,17 +51,15 @@ export const Login = () => {
 
 
   return (
+    
     <>
-      <div className="background div">
-      </div>
       <div className='form div'>
         <h3>Login Here</h3>
-        <label forhtml="username">Username</label>
-        <input typeof="text" placeholder="User Name" name="username" id="username" value={userData.username} onChange={handleCollectData} />
-        <label forhtml="password">Password</label>
-        <input type="password" placeholder="Password" name='password' id="password" value={userData.password}
+        <input typeof="text" placeholder="user-name" name="username" id="username" value={userData.username} onChange={handleCollectData} />
+        <input type="password" placeholder="password" name='password' id="password" value={userData.password}
           onChange={handleCollectData} />
         <button type='submit' onClick={getLogin} >Log In</button>
+        <small>hint:- username : johnd, password : m38rmF$</small>
         {/* <div className="social div">
           <div className="go div"><i className="fab fa-google"></i> <a href='/www.google.com'>google</a></div>
           <div className="fb div"><i className="fab fa-facebook"></i>  Facebook</div>

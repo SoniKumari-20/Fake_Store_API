@@ -14,31 +14,24 @@
 }
 
 .add {
-    width: 248px;
-
+    width: 30%;
 }
 
 .margin1 {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-
+    justify-content: space-evenly;
 }
 
 .margin1 button {
     margin: 0 !important;
 }
-
-.card_img {
-    margin-top: 40px;
-    height: 440px;
-    width: 440px;
-}
-
-.des_card {
-    height: 250px;
-    width: 900px;
-    margin-left: 35px;
+.card{
+    height: 90%;
+    margin-left: 2%;
+    margin-top: 2%;
+    /* border: 2px solid rgba(6, 114, 117, 0.815) ; */
+    box-shadow: 1px 1px 6px 2px rgba(6, 114, 117, 0.815);
 }
 
 .icons {
@@ -68,12 +61,8 @@
 
 
 .background {
-    width: 430px;
-    height: 520px;
-    position: absolute;
-    transform: translate(-50%, -50%);
-    left: 50%;
-    top: 50%;
+    width: 50%;
+    height: 50%;
 }
 
 .background .shape {
@@ -99,9 +88,9 @@
 }
 
 .form {
-    height: 520px;
+    height: 60%;
     width: 400px;
-    background-color: rgba(226, 209, 209, 0.815);
+    background-color: rgba(118, 208, 211, 0.815);
     position: absolute;
     transform: translate(-50%, -50%);
     top: 50%;
@@ -110,7 +99,7 @@
     backdrop-filter: blur(10px);
     border: 2px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
-    padding: 50px 35px;
+    padding: 35px 35px;
 }
 
 .form h3 {
@@ -118,13 +107,6 @@
     font-weight: 500;
     line-height: 42px;
     text-align: center;
-}
-
-label {
-    display: block;
-    margin-top: 30px;
-    font-size: 16px;
-    font-weight: 500;
 }
 
 input {
@@ -144,9 +126,9 @@ input {
 }
 
 button {
-    margin-top: 50px;
+    margin-top: 2%;
     width: 100%;
-    background-color: rgba(8, 64, 247, 0.952);
+    background-color: rgba(118, 208, 211, 0.815);
     padding: 15px 0;
     font-size: 18px;
     font-weight: 600;

@@ -6,11 +6,6 @@ import { useEffect } from 'react';
 
 export default function Header() {
   const { cartItems, isAuth } = useContext(MainContext);
-
-
-
-
-
   function logout() {
     localStorage.removeItem("Token")
     window.location.href = "/"
@@ -18,15 +13,11 @@ export default function Header() {
   }
 
 
-
-
   return (
     // <div>
-    <nav className="navbar sticky-top navbar-expand-lg navbar-dark bg-primary">
-      <Link className="navbar-brand" href="/home">Navbar</Link>
-      <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span className="navbar-toggler-icon"></span>
-      </button>
+    <nav className="navbar sticky-top navbar-expand-lg navbar navbar-light" style={{backgroundColor: "rgba(6, 114, 117, 0.815)"}}>
+      <Link className="navbar-brand" href="/home" style={{color: "white"}}>Navbar</Link>
+
       {
         isAuth ?
           <div className="collapse navbar-collapse" id="navbarSupportedContent">

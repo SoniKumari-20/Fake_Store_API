@@ -7,6 +7,7 @@ export const MainContext = createContext({})
 const MainProvider = ({ children }) => {
     const [cartItems, setCartItems] = useState([])
     const [allProducts, setAllProducts] = useState([])
+    const [filter, setFilter] = useState([])
     const [allUserData, setAllUserData] = useState([])
     const [category, setCategory] = useState([])
     const [isAuth, setIsAuth] = useState(false)
@@ -16,8 +17,10 @@ const MainProvider = ({ children }) => {
 
 
     const getAllProducts = async () => {
-        getAllProductsData().then((res) => setAllProducts(res.data)).catch((err => {
+        getAllProductsData().then((res) => {
+            setAllProducts(res.data); setFilter(res.data)}).catch((err => {
             setAllProducts([])
+        
         }))
     }
 
@@ -75,13 +78,6 @@ const MainProvider = ({ children }) => {
 
     }
 
-
-
-
-
-
-
-
     return (
         <MainContext.Provider value={{
             getAllProducts,
@@ -95,8 +91,9 @@ const MainProvider = ({ children }) => {
             getAllCategories,
             category,
             isAuth,
-            setIsAuth
-
+            setIsAuth,
+            filter, 
+            setFilter
 
         }}>
             {children}
